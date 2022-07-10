@@ -6,7 +6,7 @@ from django.db import models
 # Create your models here.
 from django.db import models
 
-
+from django.contrib.auth.models import User
 
 import datetime
 
@@ -14,10 +14,10 @@ from django.db import models
 from django.utils import timezone
 
 
-class user(models.Model):
-    user_id=models.CharField(max_length=200)
-    user_name=models.CharField(max_length=1000)
-    user_pass=models.CharField(max_length=10)
+class user_score(models.Model):
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
+    user_score=models.IntegerField(default=0)
+   
     def __str__(self):
         return self.user_id
 
@@ -43,7 +43,7 @@ class TestCases(models.Model):
         return self.input_testcases
 
 class Submissions(models.Model):
-    user_id=models.ForeignKey(user,on_delete=models.CASCADE)
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     Submission_verdict=models.CharField(max_length=10,default="unsolved")
     submission_date = models.DateTimeField('date submitted')

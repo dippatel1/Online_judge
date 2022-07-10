@@ -1,12 +1,13 @@
 from django.shortcuts import render
 
 
+
 from django.http import HttpResponse
 
 
 from django.shortcuts import get_object_or_404, render
 
-from oj.models import  Question,user,Submissions,TestCases
+from oj.models import  Question,user_score,Submissions,TestCases
 
 import os
 from .forms import SubmitedCode
@@ -35,8 +36,8 @@ from io import StringIO
 import contextlib
 
 #-----------------------------------------
-
-
+from django.contrib.auth.decorators import login_required
+@login_required()
 def problems(request):
     latest_question_list = Question.objects.all()
     #template = loader.get_template('oj/index.html')
@@ -47,12 +48,13 @@ def problems(request):
    
     
 
-
+@login_required()
 def detail(request, problem_id):
     question = get_object_or_404(Question, pk=problem_id)
     form = SubmitedCode()
     return render(request, 'oj/detail.html', {'question': question,'form':form})
 
+@login_required()
 def SubmitProblem(request,problem_id):
     # f=request.FILES['solution1']
     # with open("C:/Users/91832/Desktop/Oj/mysite/dip/solution.cpp",'wb+') as dest:
