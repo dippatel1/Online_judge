@@ -1,0 +1,8 @@
+
+
+{% for sub in latest_submissions %}
+{% comment %} <li><a href="/oj/{{ question.id }}/">{{ question.question_id }}</a></li> {% endcomment %}
+
+<p>{{sub.user_id}}  {{sub.question}} {{sub.Submission_verdict}}  {{sub.submission_date}}</p>
+{% endfor %}
+

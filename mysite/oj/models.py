@@ -19,13 +19,13 @@ class user_score(models.Model):
     user_score=models.IntegerField(default=0)
    
     def __str__(self):
-        return self.user_id
+        return str(self.user_id)
 
 
 class Question(models.Model):
     
     question_name = models.CharField(max_length=200)
-    question_des=models.CharField(max_length=1000)
+    question_des=models.TextField(max_length=1000)
     question_diff=models.CharField(max_length=20)
     pub_date = models.DateTimeField('date published')
     def __str__(self):
@@ -37,15 +37,16 @@ class Question(models.Model):
 
 class TestCases(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    input_testcases = models.CharField(max_length=1000)
-    otput_testcases = models.CharField(max_length=1000)
+    input_testcases = models.TextField(max_length=1000)
+    otput_testcases = models.TextField(max_length=1000)
     def __str__(self):
         return self.input_testcases
 
-class Submissions(models.Model):
+
+
+class submissions1(models.Model):
     user_id=models.ForeignKey(User,on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     Submission_verdict=models.CharField(max_length=10,default="unsolved")
-    submission_date = models.DateTimeField('date submitted')
-    submitted_code=models.CharField(max_length=1000,default="")
-
+    submission_date = models.DateField()
+    submitted_code=models.TextField(max_length=1000,default="")

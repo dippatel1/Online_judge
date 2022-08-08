@@ -1,11 +1,26 @@
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        {% comment %} <li><a href="/oj/{{ question.id }}/">{{ question.question_id }}</a></li> {% endcomment %}
 
-        <li><a href="{% url 'oj:detail' question.id %}">{{ question.question_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Question are available.</p>
-{% endif %}
+{% extends "oj/base.html" %}
+
+{% load static %}
+{% block content %} 
+    <link rel="stylesheet" href="{% static 'oj/css/main1.css' %}">
+    <div class="container ">
+            <div class="row g-0">
+                <div class="question-container" id="header-text">
+                    <h2 class="heading-2"> Hey {% if username %}{{username}}{% endif %} , Welcome to  LIQUID</h2>
+                    {% if latest_question_list %}
+                    <ul>
+                    {% for question in latest_question_list %}
+                        {% comment %} <li><a href="/oj/{{ question.id }}/">{{ question.question_id }}</a></li> {% endcomment %}
+                
+                        <li><a href="{% url 'oj:detail' question.id %}">{{ question.question_name }}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No Question are available.</p>
+                {% endif %}
+
+                 
+              </div>
+    </div>
+{% endblock content %}

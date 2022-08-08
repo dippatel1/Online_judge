@@ -1,0 +1,22 @@
+.heading-2{
+    text-align: center;
+    color: yellow;
+}
+.question-container{
+    margin:2rem auto;
+}
+
+.question-des{
+    font-size: 2rem;
+    color: white;
+}
+.question-diff{
+    font-size: 1rem;
+    color: greenyellow;
+}
+
+.question-sol{
+  
+}
+
+

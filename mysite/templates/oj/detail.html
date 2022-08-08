@@ -1,35 +1,25 @@
-{% comment %} <h1>{{ question.question_name }}</h1>
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }}</li>
-{% endfor %}
-</ul>
 
-<h2>{{question.question_des}}</h2>
-<h3>{{question.question_diff}}</h3>
+{% extends "oj/base.html" %}
 
-<form action='{% url 'oj:submit' question.id %}' method="post">
-    {% csrf_token %}
-    <input type="file" name="solution1" id="solution1">
-    <input type="submit" value="Submit">
-</form> {% endcomment %}
-
-{% comment %} ------------------------------------- {% endcomment %}
-
-<html>
-<head>
-<title>{% if question %} {{question.question_name}} {% endif %}</title>
-</head>
-<body>
-{% if question %}
-	<h1>{{question.question_name}}</h1><br/>
-	<p>{{question.question_des}}</p><br/>
-    <p>{{question.question_diff}}</p><br/>
-	<form  action="{% url 'oj:submit' question.id  %}" method="POST">
-		{{form.as_p}}
-	{% csrf_token %}
-	<input type="submit" value="Upload">
-	</form>
-{% endif %}
-</body>
-</html>
+{% load static %}
+{% block content %} 
+    <link rel="stylesheet" href="{% static 'oj/css/main1.css' %}">
+    <div class="container ">
+            <div class="row g-0">
+                <div class="question-container" id="header-text">
+					{% if question %}
+						<h2 class="heading-2">{{question.question_name}}</h2>
+						<p class="question-des">{{question.question_des|linebreaksbr}}</p>
+    					<p class="question-diff">{{question.question_diff}}</p>
+						<form   action="{% url 'oj:submit' question.id  %}" method="POST">
+							{% csrf_token %}
+							<div class="question-sol">{{form.as_table}}</div>
+							<br/>
+							<input type="submit" value="Upload">
+						</form>
+					{% endif %}
+				</div>    
+            </div>
+    </div>
+{% endblock content %}
+{% comment %} -------------------------- {% endcomment %}
