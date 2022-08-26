@@ -108,7 +108,7 @@ def SubmitProblem(request,problem_id):
                 out=s
 
             
-            if err and out==testcase.otput_testcases:
+            if err=="" and out==testcase.otput_testcases:
                 verd="AC"
             else:
                 verd="WA"
@@ -129,6 +129,7 @@ def SubmitProblem(request,problem_id):
         'code':code,
         'verdict':verd,
         'error':err,
+        'required_output':testcase.otput_testcases,
     }
 
     return render(request, 'oj/submit.html', context)

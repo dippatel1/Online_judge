@@ -238,7 +238,9 @@ background:rgba(255, 227, 208, 0.2);
 text-align:center;
 }
 
-
+p{
+  color: orange;
+}
 
 
 

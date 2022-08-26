@@ -1,4 +1,33 @@
+{% extends "oj/base.html" %}
 
+{% load static %}
+{% block content %} 
+    <link rel="stylesheet" href="{% static 'oj/css/main1.css' %}">
+    <div class="container ">
+            <div class="row g-0">
+
+                <div class="question-container" id="header-text">
+                    <h2 class="heading-2">{{problem}}</h2>
+                <div style="border:5px solid white;">
+                    <p style="color:orange; margin: 2rem 30rem;">
+
+                        {{code|linebreaksbr}}
+
+                    </p>
+                    <div style="color: green;margin-left:30rem;">
+                    <h5>output : {{output|linebreaksbr}}</h5>
+                    <h5>Required Output :{{required_output|linebreaksbr}}</h5>
+                    <h5> Verdict :{{verdict}}</h5>
+                    <h5> {{error}}</h5>
+                    </div>
+
+                </div>
+                    
+
+                 
+              </div>
+    </div>
+{% endblock content %}
 {{problem}}
 <br>
 <hr>
@@ -6,6 +35,10 @@
 <br>
 <hr>
 {{output|linebreaksbr}}
+<br>
+<hr>
+<br>
+{{required_output|linebreaksbr}}
 <br>
 <hr>
 {{verdict}}
